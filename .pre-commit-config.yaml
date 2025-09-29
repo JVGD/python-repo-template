@@ -16,3 +16,12 @@ repos:
         args: ['--autofix', '--indent', '2', '--no-sort-keys']
       - id: check-merge-conflict
       - id: debug-statements
+
+  - repo: local
+    hooks:
+      # Ruff format (formatter)
+      - id: ruff-format-local
+        name: Ruff Format (uv run)
+        entry: uv run ruff format
+        language: system
+        types: [python]
