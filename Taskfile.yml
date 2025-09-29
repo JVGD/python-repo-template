@@ -30,8 +30,12 @@ tasks:
       - uv run mypy src/ tests/
 
   qa:
-    desc: Run all quality assurance tasks (linting and type checking)
-    deps: [format, lint, type_check]
+    desc: Run all quality assurance tasks (format, lint, type_check) in order
+    deps: [install]
+    cmds:
+      - task: format
+      - task: lint
+      - task: type_check
 
   clean:
     desc: Clean up generated files
