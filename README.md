@@ -68,8 +68,7 @@ vim pyproject.toml  # Change name, description, author
 mv src/template_package src/your_package_name
 mv tests/template_package tests/your_package_name
 
-# Update imports in test files
-find tests/ -name "*.py" -exec sed -i 's/template_package/your_package_name/g' {} \;
+# Update imports in src and test files
 ```
 
 ## 🛠️ Development Workflow
