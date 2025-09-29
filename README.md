@@ -19,7 +19,6 @@ This template provides a complete development environment with:
 - **🧪 Testing Framework**: pytest with coverage reporting and markers
 - **🪝 Pre-commit Hooks**: Automated code quality checks for Python, YAML, and JSON
 - **⚡ Task Automation**: Taskfile for common development tasks
-- **📁 Src Layout**: Modern Python package structure
 - **🔧 Development Tools**: Pre-configured for immediate productivity
 
 ## 📋 Prerequisites
@@ -30,9 +29,9 @@ Before using this template, ensure you have the following installed:
 
 | Tool | Version | Purpose | Installation |
 |------|---------|---------|--------------|
-| **Python** | 3.11+ | Runtime environment | [python.org](https://www.python.org/downloads/) |
-| **UV** | Latest | Package manager | [uv installation](https://docs.astral.sh/uv/getting-started/installation/) |
-| **Task** | Latest | Task runner | [taskfile.dev/installation](Task installation/) |
+| **UV** | >=0.8.22 | Package manager | [uv installation](https://docs.astral.sh/uv/getting-started/installation/) |
+| **Python** | 3.11+ | Runtime environment | [python.org](https://www.python.org/downloads/) (can also be installed with `uv`) |
+| **Task** | Latest | Task runner (better than Makefiles)| [Taskfile](https://taskfile.dev/installation) |
 
 ## 🚀 Quick Start
 
@@ -53,8 +52,8 @@ cd my-awesome-project
 # Install all dependencies (including development tools)
 task install
 
-# Verify installation
-task help
+# Verify installation running full quality assurance pipeline
+task qa
 ```
 
 ### 3. ✏️ Customize Your Project
@@ -93,7 +92,7 @@ task type_check
 # 🧪 Run tests
 task test
 
-# ⚡ Run complete quality assurance pipeline
+# ⚡ Run complete quality assurance pipeline (format, lint, type_check and tests)
 task qa
 
 # 🧽 Clean generated files
@@ -102,81 +101,45 @@ task clean
 
 ### 🪝 Pre-commit Hooks
 
-This template includes comprehensive pre-commit hooks for code quality:
+This template includes comprehensive pre-commit hooks for code quality. They are installed when running `task install`. However if you want to run it on all files ad-hoc you can issue:
 
 ```bash
-# Install pre-commit hooks (run once after cloning)
-pre-commit install
-
 # Run hooks on all files manually
 pre-commit run --all-files
-
-# Run hooks on staged files only
-pre-commit run
-
-# Update hook versions
-pre-commit autoupdate
 ```
 
-**Included Hooks:**
-- **Python**: Ruff (linting & formatting), MyPy (type checking), Bandit (security)
+Included Hooks:
+- **Python**: Ruff (linting & formatting)
 - **General**: Trailing whitespace, end-of-file-fixer, merge conflict detection
 - **YAML**: yamllint, prettier formatting
 - **JSON**: prettier formatting, syntax validation
-- **TOML**: syntax validation
-- **Security**: Safety dependency checks, Bandit security linting
 
 ## 📁 Project Structure
 
 ```
-my-awesome-project/
+python-repo-template/
+├── 📄 .env.example            # Environment variables template
+├── 📄 .gitignore              # Git ignore patterns
+├── 📄 .pre-commit-config.yaml # Pre-commit hooks configuration
+├── 📄 .python-version         # Python version specification
+├── 📄 LICENSE                 # Project license
 ├── 📄 pyproject.toml          # Project metadata & tool configuration
+├── 📄 README.md               # Project documentation
 ├── 📄 Taskfile.yml            # Task automation definitions
 ├── 📄 uv.lock                 # Dependency lock file
+├── 📁 .venv/                  # Virtual environment (auto-created)
 ├── 📁 src/                    # Source code (importable package)
-│   └── 📁 your_package/
+│   ├── 📄 main.py             # Main application entry point
+│   └── 📁 template_package/   # Example package (rename to your package)
 │       ├── 📄 __init__.py
-│       └── 📄 module.py
-├── 📁 tests/                  # Test suite
-│   ├── 📄 __init__.py
-│   └── 📁 your_package/
-│       ├── 📄 __init__.py
-│       └── 📄 test_module.py
-└── 📁 .venv/                  # Virtual environment (auto-created)
+│       └── 📄 template_module.py
+└── 📁 tests/                  # Test suite
+    ├── 📄 __init__.py
+    ├── � test_main.py        # Tests for main.py
+    └── 📁 template_package/   # Package-specific tests
+        ├── 📄 __init__.py
+        └── 📄 test_template_module.py
 ```
-
-## ⚙️ Tool Configuration
-
-### 🎯 Ruff (Linting & Formatting)
-
-Configured in `pyproject.toml` with:
-- **Line Length**: 120 characters
-- **Rules**: Pycodestyle, Pyflakes, isort, bugbear, pyupgrade
-- **Auto-fix**: Enabled for safe transformations
-
-### 🔍 MyPy (Type Checking)
-
-Strict configuration enabled:
-- **Strict Mode**: All optional checks enabled
-- **Target**: `src/` and `tests/` directories
-- **Python Version**: Matches project requirement (3.11+)
-
-### 🧪 pytest (Testing)
-
-Comprehensive test configuration:
-- **Test Discovery**: `tests/` directory with `test_*.py` pattern
-- **Coverage**: Minimum 80% threshold with HTML/XML reports
-- **Markers**: `unit`, `integration`, `slow`, `smoke` for test categorization
-- **Plugins**: pytest-cov, pytest-mock included
-
-### ⚡ Task (Automation)
-
-All development workflows automated:
-- **Dependency Management**: Install, sync, clean
-- **Code Quality**: Format, lint, type check
-- **Testing**: Various test execution strategies
-- **CI/CD**: Complete pipeline automation
-
 
 ### 🧑‍⚖️ License
 
