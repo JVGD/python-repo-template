@@ -33,3 +33,9 @@ select = [
 
 [tool.mypy]
 strict = true
+
+
+[tool.pytest.ini_options]
+minversion = "7.0"
+testpaths = ["tests"]
+pythonpath = ["src"]
