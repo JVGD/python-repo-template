@@ -4,13 +4,13 @@ version = "0.1.0"
 description = "Add your description here"
 readme = "README.md"
 requires-python = ">=3.11"
-dependencies = []
 authors = [{ name = "Your Name", email = "j.vargas.g.d@gmail.com" }]
 license = { file = "LICENSE" }
 
 [dependency-groups]
 dev = [
     "mypy>=1.18.2",
+    "pytest>=8.4.2",
     "ruff>=0.13.2",
 ]
 
