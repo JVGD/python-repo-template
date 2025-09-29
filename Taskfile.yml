@@ -1,4 +1,4 @@
-version: '3'
+version: "3"
 
 tasks:
   env:
@@ -9,10 +9,11 @@ tasks:
       - .env.example
 
   install:
-    desc: Install all dependencies including development groups
+    desc: Install all dependencies including development tools
     deps: [env]
     cmds:
       - uv sync --all-groups
+      - uv run pre-commit install
     sources:
       - pyproject.toml
       - uv.lock

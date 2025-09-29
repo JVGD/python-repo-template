@@ -17,6 +17,7 @@ This template provides a complete development environment with:
 - **🎯 Code Quality**: Ruff for linting and formatting (replaces Black + isort + flake8)
 - **🔍 Type Checking**: MyPy with strict configuration
 - **🧪 Testing Framework**: pytest with coverage reporting and markers
+- **🪝 Pre-commit Hooks**: Automated code quality checks for Python, YAML, and JSON
 - **⚡ Task Automation**: Taskfile for common development tasks
 - **📁 Src Layout**: Modern Python package structure
 - **🔧 Development Tools**: Pre-configured for immediate productivity
@@ -98,6 +99,32 @@ task qa
 # 🧽 Clean generated files
 task clean
 ```
+
+### 🪝 Pre-commit Hooks
+
+This template includes comprehensive pre-commit hooks for code quality:
+
+```bash
+# Install pre-commit hooks (run once after cloning)
+pre-commit install
+
+# Run hooks on all files manually
+pre-commit run --all-files
+
+# Run hooks on staged files only
+pre-commit run
+
+# Update hook versions
+pre-commit autoupdate
+```
+
+**Included Hooks:**
+- **Python**: Ruff (linting & formatting), MyPy (type checking), Bandit (security)
+- **General**: Trailing whitespace, end-of-file-fixer, merge conflict detection
+- **YAML**: yamllint, prettier formatting
+- **JSON**: prettier formatting, syntax validation
+- **TOML**: syntax validation
+- **Security**: Safety dependency checks, Bandit security linting
 
 ## 📁 Project Structure
 
