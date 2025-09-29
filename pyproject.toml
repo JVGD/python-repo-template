@@ -30,3 +30,6 @@ select = [
     "B",   # flake8-bugbear (common design issues/bugs)
     "UP",  # pyupgrade (modernizing syntax)
 ]
+
+[tool.mypy]
+strict = true
