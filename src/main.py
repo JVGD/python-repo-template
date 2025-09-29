@@ -5,5 +5,6 @@ def main() -> None:
     greeter = Greeter("Paco")
     print(greeter.greet())
 
+
 if __name__ == "__main__":
     main()
