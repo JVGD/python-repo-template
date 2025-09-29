@@ -50,6 +50,7 @@ tasks:
       - task: format
       - task: lint
       - task: type_check
+      - task: test
 
   clean:
     desc: Clean up generated files
