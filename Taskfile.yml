@@ -11,17 +11,27 @@ tasks:
     generates:
       - .venv/**/*
 
+  format:
+    desc: Format code using ruff
+    deps: [install]
+    cmds:
+      - uv run ruff format .
+
   lint:
     desc: Run all linting tools
     deps: [install]
     cmds:
       - uv run ruff check --fix .
 
-  format:
-    desc: Format code using ruff
+  type_check:
+    desc: Run type checking using mypy
     deps: [install]
     cmds:
-      - uv run ruff format .
+      - uv run mypy src/ tests/
+
+  qa:
+    desc: Run all quality assurance tasks (linting and type checking)
+    deps: [format, lint, type_check]
 
   clean:
     desc: Clean up generated files
