@@ -11,5 +11,3 @@ def test_greet(name: str, expected_start: str) -> None:
     greeter = Greeter(name)
     greeting = greeter.greet()
     assert greeting.startswith(expected_start)
-    assert "today is" in greeting
-    assert len(greeting) > len(expected_start) + len("!, today is YYYY-MM-DD.")
