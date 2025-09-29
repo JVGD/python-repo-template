@@ -37,6 +37,12 @@ tasks:
     cmds:
       - uv run mypy src/ tests/
 
+  test:
+    desc: Run all tests with coverage
+    deps: [install]
+    cmds:
+      - uv run pytest --cov=src tests/
+
   qa:
     desc: Run all quality assurance tasks (format, lint, type_check) in order
     deps: [install]
