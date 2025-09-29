@@ -1,0 +1,44 @@
+version: '3'
+
+tasks:
+  install:
+    desc: Install all dependencies including development groups
+    cmds:
+      - uv sync --all-groups
+    sources:
+      - pyproject.toml
+      - uv.lock
+    generates:
+      - .venv/**/*
+
+  lint:
+    desc: Run all linting tools
+    deps: [install]
+    cmds:
+      - uv run ruff check .
+
+  format:
+    desc: Format code using ruff
+    deps: [install]
+    cmds:
+      - uv run ruff format .
+
+  fix:
+    desc: Fix linting issues automatically
+    deps: [install]
+    cmds:
+      - uv run ruff check --fix .
+      - uv run ruff format .
+
+  clean:
+    desc: Clean up generated files
+    cmds:
+      - rm -rf .pytest_cache/
+      - rm -rf __pycache__/
+      - find . -type d -name "*.egg-info" -exec rm -rf {} +
+      - find . -type f -name "*.pyc" -delete
+
+  help:
+    desc: Show available tasks
+    cmds:
+      - task --list
