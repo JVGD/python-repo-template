@@ -60,8 +60,8 @@ tasks:
       - rm -rf .pytest_cache/
       - rm -rf .ruff_cache/
       - rm -rf .task/
-      - rm -rf __pycache__/
       - rm -rf .coverage
+      - find ./* -type d -name "__pycache__" -exec rm -r {} +
       - find . -type d -name "*.egg-info" -exec rm -rf {} +
       - find . -type f -name "*.pyc" -delete
 
