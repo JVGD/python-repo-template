@@ -58,17 +58,14 @@ task qa
 
 ### 3. ✏️ Customize Your Project
 
-Edit these key files to match your project:
+Run the task `rename` to automatically rename the package template to your desired name.
 
 ```bash
-# Update project metadata
-vim pyproject.toml  # Change name, description, author
+# This task renames the template package and module to your desired names.
+# It modifies file contents, renames files and directories, and then can be removed.
 
-# Update package name
-mv src/template_package src/your_package_name
-mv tests/template_package tests/your_package_name
-
-# Update imports in src and test files
+# Example:
+task setup -- awesome_api
 ```
 
 ## 🛠️ Development Workflow
