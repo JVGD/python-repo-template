@@ -110,6 +110,18 @@ Included Hooks:
 - **YAML**: yamllint, prettier formatting
 - **JSON**: prettier formatting, syntax validation
 
+### 🐳 Docker
+
+Build and run the project in a container:
+
+```bash
+# Build Docker image
+task build
+
+# Build with custom tag
+task build TAG=my-app:v1.0.0
+```
+
 ## 📁 Project Structure
 
 ```

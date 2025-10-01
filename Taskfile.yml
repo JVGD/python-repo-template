@@ -65,6 +65,18 @@ tasks:
       - find . -type d -name "*.egg-info" -exec rm -rf {} +
       - find . -type f -name "*.pyc" -delete
 
+  build:
+    desc: Build Docker image
+    vars:
+      TAG: '{{.TAG | default "python-repo-template:latest"}}'
+    cmds:
+      - docker build -t {{.TAG}} .
+    sources:
+      - Dockerfile
+      - pyproject.toml
+      - uv.lock
+      - src/**/*
+
   help:
     desc: Show available tasks
     cmds:
