@@ -67,6 +67,16 @@ tasks:
 
   build:
     desc: Build Docker image
+    summary: |
+      Build a Docker image for the project.
+
+      Usage:
+        task build                    # Build with default tag
+        task build TAG=my-app:v1.0.0  # Build with custom tag
+
+      Examples:
+        task build TAG=myproject:latest
+        task build TAG=myproject:dev
     vars:
       TAG: '{{.TAG | default "python-repo-template:latest"}}'
     cmds:
@@ -83,36 +93,28 @@ tasks:
       - task --list
 
   rename:
-    desc: "Initializes the project from the template by renaming the package and module."
-    deps: [clean]
+    desc: Rename template package to your project name
     summary: |
-      This task renames the template package and module to your desired names.
-      It modifies file contents, renames files and directories, and then can be removed.
+      Rename the template package and module to your project name.
+      This updates all imports and file references automatically.
 
       Usage:
-        task setup -- <new-package-name>
-
-      Example:
-        task setup -- awesome_api
+        task rename                        # Use default name (my_package)
+        task rename NAME=your_package      # Use custom package name
+    deps: [clean]
     vars:
-      OLD_PACKAGE_NAME: template_package
-      PACKAGE_NAME: '{{.CLI_ARGS}}'
+      NAME: '{{.NAME | default "my_package"}}'
     preconditions:
-      - sh: 'test -n "{{.PACKAGE_NAME}}"'
-        msg: "❌ Missing arguments. Usage: task setup -- <new-package-name>"
-      - sh: 'test -d "src/{{.OLD_PACKAGE_NAME}}"'
-        msg: "🤔 Project seems to be already set up. 'src/{{.OLD_PACKAGE_NAME}}' not found."
+      - sh: 'test "{{.NAME}}" != "template_package"'
+        msg: "❌ Please provide a different name than 'template_package'. Usage: task rename NAME=your_package"
+      - sh: 'test -d "src/template_package"'
+        msg: "🤔 Project already renamed. 'src/template_package' not found."
     cmds:
-      - echo "🚀 Initializing project with package '{{.PACKAGE_NAME}}'"
-      # Replace all string occurrences in files.
-      # We use `find` to locate relevant files and `sed` to perform in-place replacement.
-      # The `-i.bak` flag is used for cross-platform compatibility (macOS & Linux).
+      - echo "🚀 Renaming template_package to {{.NAME}}"
       - |
         find src tests pyproject.toml -type f -print0 | \
-        xargs -0 sed -i.bak 's/{{.OLD_PACKAGE_NAME}}/{{.PACKAGE_NAME}}/g'
-      # Rename the directories and files.
-      - mv src/{{.OLD_PACKAGE_NAME}} src/{{.PACKAGE_NAME}}
-      - mv tests/{{.OLD_PACKAGE_NAME}} tests/{{.PACKAGE_NAME}}
-      # Clean up the backup files created by sed.
+        xargs -0 sed -i.bak 's/template_package/{{.NAME}}/g'
+      - mv src/template_package src/{{.NAME}}
+      - mv tests/template_package tests/{{.NAME}}
       - find . -name "*.bak" -type f -delete
-      - echo "✅ Project setup complete!"
+      - echo "✅ Renamed to {{.NAME}}!"

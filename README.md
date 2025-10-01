@@ -61,11 +61,8 @@ task qa
 Run the task `rename` to automatically rename the package template to your desired name.
 
 ```bash
-# This task renames the template package and module to your desired names.
-# It modifies file contents, renames files and directories, and then can be removed.
-
-# Example:
-task setup -- awesome_api
+# This task renames the template package to your desired name, handle directories files and imports
+task rename NAME=your_package
 ```
 
 ## 🛠️ Development Workflow
