@@ -67,6 +67,7 @@ tasks:
 
   build:
     desc: Build Docker image
+    deps: [clean]
     summary: |
       Build a Docker image for the project.
 
@@ -86,11 +87,6 @@ tasks:
       - pyproject.toml
       - uv.lock
       - src/**/*
-
-  help:
-    desc: Show available tasks
-    cmds:
-      - task --list
 
   rename:
     desc: Rename template package to your project name
