@@ -124,10 +124,12 @@ task build TAG=my-app:v1.0.0
 
 ```
 python-repo-template/
+├── 📄 .dockerignore           # Docker ignore patterns
 ├── 📄 .env.example            # Environment variables template
 ├── 📄 .gitignore              # Git ignore patterns
 ├── 📄 .pre-commit-config.yaml # Pre-commit hooks configuration
 ├── 📄 .python-version         # Python version specification
+├── 📄 Dockerfile              # Docker container definition
 ├── 📄 LICENSE                 # Project license
 ├── 📄 pyproject.toml          # Project metadata & tool configuration
 ├── 📄 README.md               # Project documentation
