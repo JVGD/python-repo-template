@@ -29,9 +29,10 @@ Before using this template, ensure you have the following installed:
 
 | Tool | Version | Purpose | Installation |
 |------|---------|---------|--------------|
-| **UV** | >=0.8.22 | Package manager | [uv installation](https://docs.astral.sh/uv/getting-started/installation/) |
-| **Python** | 3.11+ | Runtime environment | [python.org](https://www.python.org/downloads/) (can also be installed with `uv`) |
-| **Task** | Latest | Task runner (better than Makefiles)| [Taskfile](https://taskfile.dev/installation) |
+| uv | >=0.8.22 | Package manager | [uv installation](https://docs.astral.sh/uv/getting-started/installation/) |
+| Python | 3.11+ | Runtime environment | [python.org](https://www.python.org/downloads/) (can also be installed with `uv`) |
+| Task | >=3.44.1 | Task runner (better than Makefiles)| [Taskfile](https://taskfile.dev/installation) |
+| Docker | >=24.0.2 | Containerization | [Docker](https://www.docker.com/get-started/) |
 
 ## 🚀 Quick Start
 
