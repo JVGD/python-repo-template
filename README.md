@@ -50,6 +50,9 @@ cd my-awesome-project
 ### 2. 🔧 Initialize Project
 
 ```bash
+# Creating .env file
+task env
+
 # Install all dependencies (including development tools)
 task install
 
