@@ -8,6 +8,13 @@ tasks:
     sources:
       - .env.example
 
+  remove_git:
+    desc: Remove existing .git directory to start a new git history
+    cmds:
+      - rm -rf .git
+    sources:
+      - .git/**
+
   install:
     desc: Install all dependencies including development tools
     deps: [env]
@@ -19,6 +26,10 @@ tasks:
       - uv.lock
     generates:
       - .venv/**/*
+
+  setup:
+    desc: Set up the project (install dependencies, remove .git)
+    deps: [remove_git, env, install]
 
   format:
     desc: Format code using ruff
