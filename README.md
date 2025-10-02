@@ -50,11 +50,8 @@ cd my-awesome-project
 ### 2. 🔧 Initialize Project
 
 ```bash
-# Creating .env file
-task env
-
-# Install all dependencies (including development tools)
-task install
+# Remove git history, create .env file and set up virtual environment with dev dependencies
+task setup
 
 # Verify installation running full quality assurance pipeline
 task qa
