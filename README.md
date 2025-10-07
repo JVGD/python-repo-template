@@ -33,6 +33,7 @@ Before using this template, ensure you have the following installed:
 | Python | 3.11+ | Runtime environment | [python.org](https://www.python.org/downloads/) (can also be installed with `uv`) |
 | Task | >=3.44.1 | Task runner (better than Makefiles)| [Taskfile](https://taskfile.dev/installation) |
 | Docker | >=24.0.2 | Containerization | [Docker](https://www.docker.com/get-started/) |
+| Git | >=2.47.0 | Version control | [Git](https://git-scm.com) |
 
 ## 🚀 Quick Start
 
