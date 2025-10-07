@@ -1,35 +1,40 @@
 version: "3"
 
 tasks:
-  env:
+  setup_env:
     desc: Set up the env vars
     cmds:
       - cp .env.example .env
     sources:
       - .env.example
 
-  remove_git:
+  setup_git:
     desc: Remove existing .git directory to start a new git history
     cmds:
       - rm -rf .git
+      - git init
     sources:
       - .git/**
 
   install:
     desc: Install all dependencies including development tools
-    deps: [env]
     cmds:
       - uv sync --all-groups
-      - uv run pre-commit install
     sources:
       - pyproject.toml
       - uv.lock
     generates:
       - .venv/**/*
 
+  setup_precommit:
+    desc: Set up pre-commit hooks
+    deps: [install]
+    cmds:
+      - uv run pre-commit install
+
   setup:
     desc: Set up the project (install dependencies, remove .git)
-    deps: [remove_git, env, install]
+    deps: [setup_env, setup_git, install, setup_precommit]
 
   format:
     desc: Format code using ruff
